@@ -1,0 +1,24 @@
+﻿@page
+@model InyeccionDependencias.EnviarMensajeModel
+@{
+    ViewData["Title"] = "EnviarMensaje";
+}
+
+<h1>Enviar Mensaje</h1>
+
+@inject IEmailService emailServiceView
+
+<h2>Esta página simula el envío de un mensaje Email.</h2>
+<h3>La lógica de envío de mensajes se ha extrapolado a la carpeta Servicios del proyecto y se ha configurado como un servicio que se declara en el Bootstraper del Proyecto. </h3>
+<h3>Ahora mismo el servicio se limita a devolver siempre el mismo string, que toma de un parámetro de appsettings.json. El día en que se quiera cambiar la lógica de envío de mensaje sólo tendrá que modificarse el servicio, esta página ni su controlador tendrán que modificarse.</h3>
+<h3>La otra ventaja de haber llevado el envío de Email como un servicio es que podrá utilizarse en otras páginas si fuera necesario.</h3>
+<h3>Finalmente decir que si un día cambiáramos el servicio que ejecuta el envío de mail(Actualmente EmailServiceDummy.cs) tan sólo habría que ir a cambiarlo en el Bootstraper, sin tener que cambiar nada en cada página que usara el nuevo servicio.</h3>
+
+<br />
+
+<h4>Resultado Mostrado desde el OnGet del Controlador de Vista: @Model.Mensaje</h4>
+<h5>Se ha llamado a la función EnviarMail del Servicio EmailServiceDummy desde el controlador de esta página.</h5>
+
+<h4>Resultado Mostrado desde la Vista: @emailServiceView.EnviarCorreo()</h4>
+<h5>Se ha llamado a la función EnviarMail del Servicio EmailServiceDummy desde la propia página.</h5>
+

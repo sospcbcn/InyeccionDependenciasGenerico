@@ -1,0 +1,94 @@
+﻿@page
+@model InyeccionDependencias.Pages.CicloDeVidaModel
+@{
+    ViewData["Title"] = "Ciclo De Vida";
+}
+
+<br />
+<h4>Este es un ejemplo de una serie de métodos con Inyección de Dependencias. Al declararse un núevo método tendrán una instancia.</h4>
+<h4>Una vez declarado el método se procederá a las Inyecciones de Depencias.</h4>
+<h4>Según el Tipo de Método, al realizarse la Inyección de Dependencias se realizarán dentro de una misma Instancia o una Nueva. </h4>
+<h4>También según el Tipo de Método puede que se genere una nueva instancia por cada petición HTTP o puede ser siempre la misma instancia.</h4>
+
+<br />
+
+<h3><strong>Valores del Controlador</strong></h3>
+<h4><strong>Instancias Generadas por la Creación de Métodos desde el Controlador de Esta Página por la Petición HTTP Entrante.</strong></h4>
+<table>
+    <tbody>
+        <tr>
+            <td><strong>TIPO DE MÉTODO</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><strong>GUID </strong></td>
+            <td><strong>Explicación</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Transient(Transitorio): </strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.TransientDePagina</td>
+            <td>Distinta instancia por cada petición HTTP, inyección de dependencias en una nueva instancia.</td>
+        </tr>
+        <tr>
+            <td><strong>Scoped(De Ámbito):</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.ScopedDePagina</td>
+            <td>Distinta instancia por cada petición HTTP, inyección de dependencias dentro de la misma instancia.</td>
+        </tr>
+        <tr>
+            <td><strong>Singleton(Único):</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.SingletonDePagina</td>
+            <td>Siempre tendrán la misma instancia, aunque haya una nueva petición HTTP.</td>
+        </tr>
+        <tr>
+            <td><strong>Instancia Vacía Singleton:</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.SingletonInstanceDePagina</td>
+            <td>Instancia inicializada como Empty Guid.</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+
+<h3><strong>Valores del Servicio</strong></h3>
+<h4><strong>Instancias Generadas Durante la Inyección de Dependencias al generar los métodos en Valores del Controlador.</strong></h4>
+
+<table>
+    <tbody>
+        <tr>
+        <tr>
+            <td><strong>TIPO DE MÉTODO</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><strong>GUID </strong></td>
+            <td><strong>Explicación</strong></td>
+        </tr>
+        <tr>
+            <td><strong>Transient(Transitorio): </strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.TransientDelServicio</td>
+            <td>Ver que el GUID es distinto después de la inyección de dependencias.</td>
+        </tr>
+        <tr>
+            <td><strong>Scoped(De Ámbito):</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.ScopedDelServicio</td>
+            <td>El GUID no ha cambiado después de la inyección de dependencias.</td>
+        </tr>
+        <tr>
+            <td><strong>Singleton(Único):</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.SingletonDelServicio</td>
+            <td>Este GUID sólo cambiará cuando se haga un reinicio del Web Server.</td>
+        </tr>
+        <tr>
+            <td><strong>Instancia Vacía Singleton:</strong></td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>@Model.SingletonInstanceDelServicio</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<footer><strong>Refrescar esta página para generar una nueva petición HTTP y apreciar los GUIDs que cambian y los que se mantienen.</strong></footer>
